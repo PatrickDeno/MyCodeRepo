@@ -1,0 +1,92 @@
+/*Programming Fund with JavaScript Spring 2013
+Brian Hogan - Instructor
+Patrick Deno - May 1st, 2013*/
+  
+body   {
+  background-color: #000;
+  color: #003300;
+  font:1em Arial, Helvetica, sans-serif;
+  background-image: url(pics/dragons.jpg);
+	background-repeat: repeat;
+}
+
+#container {
+  margin: 25px;
+  width: 370px;
+  min-height: 75px;
+  color: #000;
+  background-color: #CCC;
+  background-image: url(pics/wood1.jpg);
+	background-repeat: repeat;
+	border: 10px solid;
+	border-radius: 50px 0px 50px 0px;
+	border-color: #7B6B7F;
+	box-shadow: 15px 15px 20px;
+	-webkit-box-shadow: 15px 15px 20px;
+	-moz-box-shadow: 15px 15px 20px;
+}
+
+#top {
+  background-color: black;
+  color: #D1D1D1;
+  text-align: center;
+  font-size: 1.4em; 
+  text-shadow: 1px 1px white, -1px -1px #444;
+  background-image: url(pics/Die.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding: 25px;
+  border-top-left-radius: 38px;
+  border-bottom-right-radius: 38px;
+}
+
+#code {
+  padding: 10px;
+  text-align: center;
+  color: black;
+  text-shadow: 1px 1px white, -1px -1px #444;
+  margin-top: -25px;
+  margin-bottom: -35px;
+}
+
+#bones{
+  text-align: left;
+  margin-left: 115px;
+}
+
+#total{
+  font-size: 2em;
+  font-weight: bold;
+  margin: -15px 0px 0px 0px;  
+}
+
+#possible{
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 5px 0px 20px 0px;  
+}
+
+.red{
+  color: red;
+  font-size: 1.5em;
+}
+
+.blue{
+  color: blue;
+  font-size: 1.2em;
+}
+
+#bottom {
+  color: #D1D1D1;
+  font-size: .6em;
+  text-align: center;
+  text-shadow: 1px 1px white, -1px -1px #444;
+  background-color: black;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding: 25px;
+  border-top-left-radius: 38px;
+  border-bottom-right-radius: 38px;
+}

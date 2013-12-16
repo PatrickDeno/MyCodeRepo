@@ -1,0 +1,200 @@
+Problem Statement:
+  A program must be written that that will simulate the rolling of gaming dice.
+  The program will ask the user for two numbers representing the the number of
+  sides on the die to be cast, and how many times that cast should be repeated.
+  These numbers will be used to generate random numbers between 1 and the type
+  of die specified, as many tmes as specified. The results will be displayed
+  one, after another, until all specified dice have been thrown. The algorythm 
+  comprised of the die to be rolled and the times it is cast (example: 2d20),
+  the total of all actual rolls, and the total of all possible rolls should
+  be displayed as well. A button at the bottom labeled, "Roll Again," will
+  refresh the page, starting the program over again. Input errors should be
+  circumvented such as a 1 sided dice being intput, or a dice with several sides
+  but no rolls, or words such as "carrot." In the case of an input error the
+  refresh button will be mared, "Please Try Again."
+
+
+  1. Nouns and Verbs
+
+  Problem Statement:
+  A program must be written that that will simulate the rolling of gaming dice.
+  The program will ask the user for two numbers representing the the number of
+  sides on the die to be cast, and how many times that cast should be repeated.
+  These numbers will be used to generate random numbers between 1 and the type
+  of die specified, as many tmes as specified. The results will be displayed
+  one, after another, until all specified dice have been thrown. The algorythm 
+  comprised of the die to be rolled and the times it is cast (example: 2d20),
+  the total of all actual rolls, and the total of all possible rolls should
+  be displayed as well. A button at the bottom labeled, "Roll Again," will
+  refresh the page, starting the program over again. Input errors should be
+  circumvented such as a 1 sided dice being intput, or a dice with several sides
+  but no rolls, or words such as "carrot." In the case of an input error the
+  refresh button will be mared, "Please Try Again."
+
+
+  Nouns: dice, two numbers, sides on the die, repetition, results, total, 
+         refresh button.
+
+  Verbs: prompt user for two numbers, generate random numbers, display results
+         one after another, display total, refresh page, error correction
+    
+
+2. Defining Diagram
+
+  INPUTS:
+    diceRoll
+    diceTimes
+    diceType
+    rollTotal
+    
+  PROCESSES:
+    PROMPT user for type of die (diceType)
+    PROMPT user for number of dice to roll (diceTimes)
+    GENERATE random numbers between 1 and specified number of die sides as
+      many times as specified
+    DISPLAY results (diceRoll) and total (rollTotal)
+    ON button press refresh page
+    
+  OUTPUTS:
+    Algorythm (number of rolls and type of die cast)
+    diceRoll (number of times specified)
+    rollTotal
+    refresh button
+    
+     
+3. Solution Algorithm
+
+  DiceGeneratorWithOutput
+    SET diceRoll
+    SET diceTimes
+    SET diceType
+    SET rollTotal
+    PROMPT for diceTimes("Please tell me how many dice you would like to roll " 
+                         + "this round.", "2")
+    PROMPT for diceType("Please tell me the type of dice to roll. " + 
+                    "(How many sides?)", "20")
+    CONVERT diceTimes to Number
+    CONVERT diceType to Number
+    SET rollTotal to 0
+    
+    CREATE function(rollTheBones)
+      FOR LOOP (SET roll to 1, roll <= diceTimes, add 1 to roll every time)
+        diceRoll = Math.floor((Math.random() * diceType) + 1)
+        rollTotal += diceRoll
+        DISPLAY ("Roll #" + roll + ") = <SPAN class=\"blue\">" + diceRoll +
+                 "</SPAN>\n"); 
+      END FOR
+    END function
+
+    IF ((diceType < 2) || (diceTimes < 1)) THEN
+      DISPLAY ("<H3>I'm sorry, I need\nbetter parameters " +
+               "to work with.\n\nPlease pick a die\nwith at least two " +
+               "sides\n" +
+               "and direct me to roll\nit at least once.</H3>\n" + 
+               "<input type=\"button\" value=\"Please Try Again\" " +
+               "onClick=\"document.location.reload(true)\">")
+    ELSE IF ((isNaN(diceType)) || (isNaN(diceTimes))) THEN
+      DISPLAY ("<H3>I'm sorry, I didn't understand\none or both of your " +
+               "criteria.</H3>" + "\n" + 
+               "<input type=\"button\" value=\"Please Try Again\" " +
+               "onClick=\"document.location.reload(true)\">")
+    ELSE 
+      DISPLAY("<H1>The bones have spoken!\nHere are the results.</H1>")
+      DISPLAY("<H2>Roll algorithm: <SPAN class=\"red\">" + diceTimes +
+                   "d" + diceType + "</SPAN></H2>")
+    
+      DISPLAY("<H3 id=\"bones\">")
+      DO FUNCTION rollTheBones
+      DISPLAY("</H3>")
+      
+      DISPLAY("<DIV id=\"total\">Your roll total: <SPAN class=\"red\">" +
+                   rollTotal + "</SPAN></DIV>")
+      DISPLAY("<DIV id=\"possible\">Total possible: <SPAN class=\"blue\">" +
+                  (diceTimes * diceType) + "</SPAN></DIV>")
+    
+      DISPLAY("<input type=\"button\" value=\"Roll Again\" " +
+                   "onClick=\"document.location.reload(true)\">")            
+    END IF
+  
+  END
+      
+      
+4. Checking the Solution Algorithm      
+      
+    VARIABLES: diceRoll, diceTimes, diceType, roll, rollTotal
+      
+    TEST CASE 1:
+
+      INPUT VALUES: 2, 20
+
+      EXPECTED RESULT: 2d20
+                       (random number between 1 and 20)
+                       (random number between 1 and 20)
+                       (sum of all actual rolls)
+                       (sum of all possible rolls)
+    
+      ACTUAL RESULT: 2d20
+                     13
+                     7
+                     20
+                     40
+    TEST CASE 2:
+
+      INPUT VALUES: 4, 8
+
+      EXPECTED RESULT: 4d8
+                       (random number between 1 and 20)
+                       (random number between 1 and 20)
+                       (sum of all actual rolls)
+                       (sum of all possible rolls)
+    
+      ACTUAL RESULT: 4d8
+                     3
+                     8
+                     6
+                     3
+                     20
+                     32
+      
+    TEST CASE 3: 1, 2
+
+      INPUT VALUES: 1, 2
+
+      EXPECTED RESULT: 1d2
+                       2
+                       2
+                       2
+    
+      ACTUAL RESULT:
+      
+    TEST CASE 4: 
+
+      INPUT VALUES: 0, 5
+
+      EXPECTED RESULT: "I'm sorry, I need
+                       better parameters to work with.
+                       
+                       Please pick a die
+                       with at least two sides
+                       and direct me to roll
+                       it at least once."
+    
+      ACTUAL RESULT: "I'm sorry, I need
+                       better parameters to work with.
+                       
+                       Please pick a die
+                       with at least two sides
+                       and direct me to roll
+                       it at least once."
+    
+
+    TEST CASE 5:
+
+      INPUT VALUES: carrot, onion
+
+      EXPECTED RESULT: "I'm sorry, I didn't understand
+                       one or both of your criteria."
+    
+      ACTUAL RESULT: "I'm sorry, I didn't understand
+                       one or both of your criteria."
+    
